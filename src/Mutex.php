@@ -4,13 +4,14 @@ namespace Illuminated\Console;
 
 use Cache;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Redis as RedisFacade;
 use NinjaMutex\Lock\FlockLock;
 use NinjaMutex\Lock\MemcachedLock;
 use NinjaMutex\Lock\MySqlLock;
+use NinjaMutex\Lock\PhpRedisLock;
 use NinjaMutex\Lock\PredisRedisLock;
 use NinjaMutex\Mutex as Ninja;
-use Predis\Client;
-use Redis;
+use Predis\Client as PredisClient;
 
 class Mutex
 {
@@ -25,6 +26,9 @@ class Mutex
         $this->ninja = new Ninja($command->getMutexName(), $this->strategy);
     }
 
+    /**
+     * @return FlockLock|MemcachedLock|MySqlLock|PhpRedisLock|PredisRedisLock
+     */
     public function getStrategy()
     {
         if (!empty($this->strategy)) {
@@ -41,7 +45,7 @@ class Mutex
                 );
 
             case 'redis':
-                return new PredisRedisLock($this->getRedisClient());
+                return $this->getRedisLock(config('database.redis.client', 'predis'));
 
             case 'memcached':
                 return new MemcachedLock(Cache::getStore()->getMemcached());
@@ -52,14 +56,28 @@ class Mutex
         }
     }
 
-    public function getRedisClient()
+    private function getRedisLock($client)
     {
-        $connection = Redis::connection();
+        if ($client === 'phpredis') {
+            return new PhpRedisLock($this->getPhpRedisClient());
+        }
+
+        return new PredisRedisLock($this->getPredisClient());
+    }
+
+    public function getPhpRedisClient()
+    {
+        return RedisFacade::connection()->client();
+    }
+
+    public function getPredisClient()
+    {
+        $connection = RedisFacade::connection();
 
         /* @laravel-versions */
-        $redisClient = ($connection instanceof Client) ? $connection : $connection->client();
+        $predisClient = ($connection instanceof PredisClient) ? $connection : $connection->client();
 
-        return $redisClient;
+        return $predisClient;
     }
 
     public function __call($method, $parameters)
