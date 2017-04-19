@@ -40,10 +40,10 @@ Prevents overlapping for Laravel console commands.
     composer require illuminated/console-mutex
     ```
 
-2. Use `Illuminated\Console\WithoutOverlapping` trait:
+2. Use `olafnorge\Console\WithoutOverlapping` trait:
 
     ```php
-    use Illuminated\Console\WithoutOverlapping;
+    use olafnorge\Console\WithoutOverlapping;
 
     class ExampleCommand extends Command
     {

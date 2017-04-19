@@ -1,6 +1,6 @@
 <?php
 
-namespace Illuminated\Console;
+namespace olafnorge\Console;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

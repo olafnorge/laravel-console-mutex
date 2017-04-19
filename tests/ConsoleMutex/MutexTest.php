@@ -1,10 +1,10 @@
 <?php
 
-namespace Illuminated\Console\ConsoleMutex\Tests;
+namespace olafnorge\Console\ConsoleMutex\Tests;
 
 use GenericCommand;
 use Illuminate\Support\Facades\Cache;
-use Illuminated\Console\Mutex;
+use olafnorge\Console\Mutex;
 use Mockery;
 use NinjaMutex\Lock\FlockLock;
 use NinjaMutex\Lock\MemcachedLock;

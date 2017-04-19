@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Console\Command;
-use Illuminated\Console\WithoutOverlapping;
+use olafnorge\Console\WithoutOverlapping;
 
 class NullTimeoutCommand extends Command
 {

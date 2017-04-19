@@ -1,6 +1,6 @@
 <?php
 
-namespace Illuminated\Console\ConsoleMutex\Tests;
+namespace olafnorge\Console\ConsoleMutex\Tests;
 
 use GenericCommand;
 use Mockery;
@@ -85,7 +85,7 @@ class WithoutOverlappingTraitTest extends TestCase
      */
     public function it_allows_to_run_command_if_there_is_no_other_running_instances()
     {
-        $mutex = Mockery::mock('overload:Illuminated\Console\Mutex');
+        $mutex = Mockery::mock('overload:olafnorge\Console\Mutex');
         $mutex->shouldReceive('acquireLock')->with(0)->once()->andReturn(true);
         $mutex->shouldReceive('releaseLock')->withNoArgs();
 
@@ -99,7 +99,7 @@ class WithoutOverlappingTraitTest extends TestCase
      */
     public function it_blocks_if_trying_to_run_another_instance_of_the_command()
     {
-        $mutex = Mockery::mock('overload:Illuminated\Console\Mutex');
+        $mutex = Mockery::mock('overload:olafnorge\Console\Mutex');
         $mutex->shouldReceive('acquireLock')->with(0)->once()->andReturn(false);
         $mutex->shouldReceive('releaseLock')->withNoArgs();
 
@@ -115,7 +115,7 @@ class WithoutOverlappingTraitTest extends TestCase
      */
     public function it_is_releasing_the_lock_after_command_execution()
     {
-        $mutex = Mockery::mock('overload:Illuminated\Console\Mutex');
+        $mutex = Mockery::mock('overload:olafnorge\Console\Mutex');
         $mutex->shouldReceive('releaseLock')->withNoArgs()->once();
 
         $command = new GenericCommand;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Illuminated\Console;
+namespace olafnorge\Console;
 
 use Cache;
 use Illuminate\Console\Command;
