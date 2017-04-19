@@ -1,19 +1,11 @@
 # Laravel Console Mutex
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/e4083afa-8ca9-4ac0-8be8-9bfadcb05fa7/big.png)](https://insight.sensiolabs.com/projects/e4083afa-8ca9-4ac0-8be8-9bfadcb05fa7)
-
-[![StyleCI](https://styleci.io/repos/59570052/shield?branch=master&style=flat)](https://styleci.io/repos/59570052)
-[![Build Status](https://travis-ci.org/dmitry-ivanov/laravel-console-mutex.svg?branch=master)](https://travis-ci.org/dmitry-ivanov/laravel-console-mutex)
-[![Coverage Status](https://coveralls.io/repos/github/dmitry-ivanov/laravel-console-mutex/badge.svg?branch=master)](https://coveralls.io/github/dmitry-ivanov/laravel-console-mutex?branch=master)
-
-[![Latest Stable Version](https://poser.pugx.org/illuminated/console-mutex/v/stable)](https://packagist.org/packages/illuminated/console-mutex)
-[![Latest Unstable Version](https://poser.pugx.org/illuminated/console-mutex/v/unstable)](https://packagist.org/packages/illuminated/console-mutex)
-[![Total Downloads](https://poser.pugx.org/illuminated/console-mutex/downloads)](https://packagist.org/packages/illuminated/console-mutex)
-[![License](https://poser.pugx.org/illuminated/console-mutex/license)](https://packagist.org/packages/illuminated/console-mutex)
+[![Latest Stable Version](https://poser.pugx.org/olafnorge/console-mutex/v/stable)](https://packagist.org/packages/olafnorge/console-mutex)
+[![Latest Unstable Version](https://poser.pugx.org/olafnorge/console-mutex/v/unstable)](https://packagist.org/packages/olafnorge/console-mutex)
+[![Total Downloads](https://poser.pugx.org/olafnorge/console-mutex/downloads)](https://packagist.org/packages/olafnorge/console-mutex)
+[![License](https://poser.pugx.org/olafnorge/console-mutex/license)](https://packagist.org/packages/olafnorge/console-mutex)
 
 Prevents overlapping for Laravel console commands.
-
-![Example](doc/img/example.gif)
 
 ## Table of contents
 
@@ -37,7 +29,7 @@ Prevents overlapping for Laravel console commands.
 1. Install package through `composer`:
 
     ```shell
-    composer require illuminated/console-mutex
+    composer require olafnorge/console-mutex
     ```
 
 2. Use `olafnorge\Console\WithoutOverlapping` trait:
@@ -199,7 +191,7 @@ class ExampleCommand extends Command
 
 ### Several traits conflict?
 
-If you're using some other cool `illuminated/console-%` packages, well, then you can find yourself getting "traits conflict".
+If you're using some other cool `olafnorge/console-%` packages, well, then you can find yourself getting "traits conflict".
 For example, if you're trying to build [loggable command](https://github.com/dmitry-ivanov/laravel-console-logger), which is protected against overlapping:
 
 ```php
